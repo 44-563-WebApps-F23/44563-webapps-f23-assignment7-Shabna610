@@ -4,7 +4,7 @@
     
     <title>Pirate Adventure</title>
     <style>
-        body {
+     body {
             font-family: Arial, sans-serif;
             background-color: #f3f3f3;
             text-align: center;
@@ -26,17 +26,16 @@
             font-size: 18px;
             margin: 0;
         }
-
         #locations, #penalty {
             font-weight: bold;
         }
 
-        #help {
+        #helpButton {
             color: #007bff;
             cursor: pointer;
         }
 
-        #help:hover {
+        #helpButton:hover {
             text-decoration: underline;
         }
 
@@ -44,7 +43,6 @@
             max-width: 100%;
             max-height: 100%;
         }
-
         .location {
             width: 300px;
             height: 300px;
@@ -61,52 +59,143 @@
             gap: 10px;
             margin-top: 20px;
         }
+
     </style>
 </head>
 <body>
     <h1>Find the treasure by Shabna</h1>
-    <div>Click on the locations to search for treasure, beware the traps.</div>
-    <div id="locations">Number of locations checked is zero.</div>
-    <div id="penalty">Penalty is zero.</div>
-    <div>Click for help.</div>
-    <div id="help">Help report</div>
-
-    <div id="game-field">
-        
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-        <div class="location"><img src="Image2.jpg" alt="Treasure"></div>
-        <div class="location"><img src="Image3.jpg" alt="Trap"></div>
-        <div class="location"><img src="Image4.jpg" alt="Pirate"></div>
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-        <div class="location"><img src="Image2.jpg" alt="Treasure"></div>
-        <div class="location"><img src="Image3.jpg" alt="Trap"></div>
-        <div class="location"><img src="Image4.jpg" alt="Pirate"></div>
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-        <div class="location"><img src="Image2.jpg" alt="Treasure"></div>
-        <div class="location"><img src="Image3.jpg" alt="Trap"></div>
-        <div class="location"><img src="Image4.jpg" alt="Pirate"></div>
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-        <div class="location"><img src="Image2.jpg" alt="Treasure"></div>
-        <div class="location"><img src="Image3.jpg" alt="Trap"></div>
-        <div class="location"><img src="Image4.jpg" alt="Pirate"></div>
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-        <div class="location"><img src="Image2.jpg" alt="Treasure"></div>
-        <div class="location"><img src="Image3.jpg" alt="Trap"></div>
-        <div class="location"><img src="Image4.jpg" alt="Pirate"></div>
-        <div class="location"><img src="Image1.jpg" alt="Starting Location"></div>
-
-       
+    <div>
+        <p>Click on the locations to search for treasure, beware the traps.</p>
+    </div>
+    <div>
+        <p id="locations">Number of locations checked is zero.</p>
+    </div>
+    <div>
+        <p id="penalty">Penalty is zero.</p>
+    </div>
+    <div>
+        <p id="helpButton" onclick="help()">Click for help</p>
+    </div>
+    <div>
+        <p id="help">Help report</p>
     </div>
 
+    
+        <div id="game-field" class="grid">
+            <div class="location"><img id="image1" src="Image1.jpg" alt="Image 1"></div>
+            <div class="location"><img id="image2" src="Image2.jpg" alt="Image 2"></div>
+            <div class="location"><img id="image3" src="Image3.jpg" alt="Image 3"></div>
+            <div class="location"><img id="image4" src="Image4.jpg" alt="Image 4"></div>
+            <div class="location"><img id="image5" src="Image1.jpg" alt="Image 5"></div>
+        
+            <div class="location"><img id="image6" src="Image1.jpg" alt="Image 6"></div>
+            <div class="location"><img id="image7" src="Image2.jpg" alt="Image 7"></div>
+            <div class="location"><img id="image8" src="Image3.jpg" alt="Image 8"></div>
+            <div class="location"><img id="image9" src="Image4.jpg" alt="Image 9"></div>
+            <div class="location"><img id="image10" src="Image1.jpg" alt="Image 10"></div>
+        
+            <div class="location"><img id="image11" src="Image1.jpg" alt="Image 11"></div>
+            <div class="location"><img id="image12" src="Image2.jpg" alt="Image 12"></div>
+            <div class="location"><img id="image13" src="Image3.jpg" alt="Image 13"></div>
+            <div class="location"><img id="image14" src="Image4.jpg" alt="Image 14"></div>
+            <div class="location"><img id="image15" src="Image1.jpg" alt="Image 15"></div>
+        
+            <div class="location"><img id="image16" src="Image1.jpg" alt="Image 16"></div>
+            <div class="location"><img id="image17" src="Image2.jpg" alt="Image 17"></div>
+            <div class="location"><img id="image18" src="Image3.jpg" alt="Image 18"></div>
+            <div class="location"><img id="image19" src="Image4.jpg" alt="Image 19"></div>
+            <div class="location"><img id="image20" src="Image1.jpg" alt="Image 20"></div>
+        
+            <div class="location"><img id="image21" src="Image1.jpg" alt="Image 21"></div>
+            <div class="location"><img id="image22" src="Image2.jpg" alt="Image 22"></div>
+            <div class="location"><img id="image23" src="Image3.jpg" alt="Image 23"></div>
+            <div class="location"><img id="image24" src="Image4.jpg" alt="Image 24"></div>
+            <div class="location"><img id="image25" src="Image1.jpg" alt="Image 25"></div>
+        </div>
+        
+    
 
+    <script>
+        // JavaScript variables
+        const ids = []; // Array to store image IDs
+        let checkCount = 0;
+        let penalty = 0;
+        let lastCheck = 0;
+        let treasureLocation = 5;
+        let trapLocation = 18;
+        let gameOver = false;
 
+        // Initialize ids array and image elements
+        for (let i = 1; i <= 25; i++) {
+            const id = `image${i}`;
+            ids.push(id);
+
+            // Add click event listeners to each image
+            const image = document.getElementById(id);
+            image.onclick = () => check(i);
+        }
+
+        // Function to handle image clicks
+        function check(position) {
+            if (gameOver) {
+                return; // Do nothing if the game is over
+            }
+
+            const id = ids[position - 1];
+            const image = document.getElementById(id);
+
+            // Logic to change image source based on position
+            if (position === treasureLocation) {
+                image.src = "treasure-image.jpg";
+                gameOver = true;
+                penalty -= 3;
+            } else if (position === trapLocation) {
+                image.src = "trap-image.jpg";
+                gameOver = true;
+                penalty += 4;
+            } else {
+                image.src = "pirate-image.jpg";
+            }
+
+            checkCount++;
+            penalty++;
+            document.getElementById("locations").textContent = `Number of locations checked is ${checkCount}`;
+            document.getElementById("penalty").textContent = `Penalty is ${penalty}`;
+            lastCheck = position;
+
+            // Check if the game is over
+            if (gameOver) {
+                document.getElementById("help").textContent = "Game Over";
+            }
+        }
+
+        // Function to provide help
+        function help() {
+            if (gameOver) {
+                return; // Do nothing if the game is over
+            }
+
+            const rowTreasure = Math.floor(treasureLocation / 5);
+            const colTreasure = treasureLocation % 5;
+            const rowLastCheck = Math.floor(lastCheck / 5);
+            const colLastCheck = lastCheck % 5;
+
+            let helpText = "";
+
+            if (Math.abs(rowTreasure - rowLastCheck) <= 1 && Math.abs(colTreasure - colLastCheck) <= 1) {
+                helpText = "Can smell it";
+                penalty += 2;
+            } else if (Math.abs(rowTreasure - rowLastCheck) + Math.abs(colTreasure - colLastCheck) === 2) {
+                helpText = "Close Matie";
+                penalty += 2;
+            } else {
+                helpText = "Step Faster";
+                penalty += 2;
+            }
+
+            document.getElementById("penalty").textContent = `Penalty is ${penalty}`;
+            document.getElementById("help").textContent = helpText;
+        }
+    </script>
 </body>
 </html>
