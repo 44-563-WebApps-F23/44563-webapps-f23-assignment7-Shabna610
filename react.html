@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-decoration: underline;
+        }
+
+        #target, #counter {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #target {
+            color: #007bff; 
+        }
+
+        #counter {
+            color: #333; 
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #007bff; 
+            color: #fff; 
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #react {
+            background-color: #ff4500; 
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Speed Check by Shabna</h1>
+    <div id="target">Your time: </div>
+    <div id="counter">Count: </div>
+    <button id="startTimer">Start Timer</button>
+    <button id="react">React</button>
+
+    <script>
+        let reactTime = undefined;
+
+        function recordTime() {
+            reactTime = Date.now();
+            console.log(reactTime);
+        }
+
+        const reactButton = document.getElementById("react");
+        reactButton.onclick = recordTime;
+
+        function startTime() {
+            for (let i = 0; i < 9; i++) {
+                setTimeout(function () {
+                    document.getElementById("counter").innerHTML = `Count: ${i}`;
+                }, (8 - i) * 1000);
+            }
+
+            setTimeout(function () {
+                if (reactTime === undefined) {
+                    document.getElementById("target").innerHTML = "Too Slow";
+                } else {
+                    const endTime = Date.now();
+                    const elapsed = endTime - reactTime;
+                    document.getElementById("target").innerHTML = `Time was ${elapsed} ms`;
+                }
+            }, 8000);
+        }
+
+        const startTimerButton = document.getElementById("startTimer");
+        startTimerButton.onclick = startTime;
+    </script>
+</body>
+</html>
