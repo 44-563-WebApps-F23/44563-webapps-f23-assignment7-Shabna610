@@ -116,8 +116,8 @@
     
 
     <script>
-        // JavaScript variables
-        const ids = []; // Array to store image IDs
+       
+        const ids = []; 
         let checkCount = 0;
         let penalty = 0;
         let lastCheck = 0;
@@ -125,26 +125,26 @@
         let trapLocation = 18;
         let gameOver = false;
 
-        // Initialize ids array and image elements
+        
         for (let i = 1; i <= 25; i++) {
             const id = `image${i}`;
             ids.push(id);
 
-            // Add click event listeners to each image
+            
             const image = document.getElementById(id);
             image.onclick = () => check(i);
         }
 
-        // Function to handle image clicks
+       
         function check(position) {
             if (gameOver) {
-                return; // Do nothing if the game is over
+                return; 
             }
 
             const id = ids[position - 1];
             const image = document.getElementById(id);
 
-            // Logic to change image source based on position
+            
             if (position === treasureLocation) {
                 image.src = "treasure-image.jpg";
                 gameOver = true;
@@ -163,16 +163,16 @@
             document.getElementById("penalty").textContent = `Penalty is ${penalty}`;
             lastCheck = position;
 
-            // Check if the game is over
+            
             if (gameOver) {
                 document.getElementById("help").textContent = "Game Over";
             }
         }
 
-        // Function to provide help
+       
         function help() {
             if (gameOver) {
-                return; // Do nothing if the game is over
+                return; 
             }
 
             const rowTreasure = Math.floor(treasureLocation / 5);
