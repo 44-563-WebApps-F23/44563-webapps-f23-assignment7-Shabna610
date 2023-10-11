@@ -1,59 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <title>setTimeout Page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Merger Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: gray;
+        }
+
+        .flex-container>div {
+            /div children of the flex container/
+            background-color: #757076;
+            margin: 10px;
+            padding: 10px;
+            font-size: 30px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
 </head>
 
-<body style="background-color: #8860c8">
+<body>
+    <h2 class="text-center">Akhila Mylavarapu builds a merger</h2>
+   Enter text: <input type="text" id="inputText" placeholder="enter text"> <br><br>
 
-    <h2 class="text-center">Akhila Mylavarapu speed check</h2>
-
-    <div class="d-flex justify-content-center" id="target"><b><i>Your time :</i></b></div>
-    <div class="d-flex justify-content-center" id="counter"><b><i>Count</i></b></div>
-
-    <div class= "d-flex justify-content-center">
-        <button type="button" class="btn btn-primary mx-2" onclick="startTime()">Start Timer</button> 
-        <button type="button" class="btn btn-primary " onclick="recordTime()">React</button>
+    <div class="flex-container" id="target">
+        <div class="merger">row item 1</div>
+        <div class="merger">row item 2</div>
+        <div class="merger">row item 3</div>
     </div>
 
-
-
-    <script>
-        var reactTime = undefined;
-
-        function recordTime() {
-            reactTime = Date.now();
-            console.log(reactTime);
-            return reactTime;
-        }
-
-        function startTime() {
-            var countdown = Math.floor(Math.random() * (10 - 2 + 1)) + 2;
-            for(let i = 0; i <= countdown; i++){
-                setTimeout(() => {
-                    document.getElementById("counter").innerHTML = i;
-                },((countdown-i)*1000));
-            }
-            setTimeout(() => {
-                if(!reactTime){
-                    document.getElementById("target").innerHTML = "Too Slow";
-                }
-                else{
-                    var endTime = Date.now();
-                    var diff = endTime - reactTime;
-                    document.getElementById("target").innerHTML = "Time was " + diff;
-                }
-            },8000);
-        }
-    </script>
+    <p> Press the button to create an new element of type div and then add it to the container.</p>
+    <button onclick="makeNewDiv()" class="btn btn-primary">Add end</button>
+    <button type="button" onclick="addFront()" class="btn btn-primary">Add Front</button>
+    <button type="button" onclick="remove()" class="btn btn-primary">Remove</button>
+    <button type="button" onclick="swap()" class="btn btn-primary">Swap</button>
 
 </body>
+<script>
+    function makeNewDiv() {
+        /* make the div and its text */
+        let element = document.createElement("div")
+        element.innerHTML = document.getElementById("inputText").value;
+        element.style.color = "black";
+        element.className = "merger";
+
+        /* add it to the container */
+        let container = document.getElementById('target');
+        container.appendChild(element);
+    }
+
+    function remove(){
+        var mergerItems =  document.getElementsByClassName("merger");
+        var length = mergerItems.length;
+
+        if(length > 0){
+            mergerItems[Math.floor(length/2)].remove();
+        }
+    }
+
+    function addFront(){
+        let element = document.createElement("div");
+        element.innerHTML = document.getElementById("inputText").value;
+        element.style.color = "black";
+        element.className = "merger";
+
+        /* add it to the container */
+        let container = document.getElementById('target');
+        container.insertBefore(element, container.firstChild);
+    }
+
+    function swap(){
+        var mergerItems =  document.getElementsByClassName("merger");
+        var length = mergerItems.length;
+        if(length <= 1){
+            alert("Items should be more than one to make a swap");
+            return;
+        }
+        
+        let container = document.getElementById('target');
+        var firstIndex = Math.floor(Math.random() * length);
+        var secondIndex = Math.floor(Math.random() * length);
+
+        while(firstIndex == secondIndex){
+            secondIndex = Math.floor(Math.random() * length);
+        }
+        if (secondIndex < firstIndex){
+            let temp = secondIndex;
+            secondIndex = firstIndex;
+            firstIndex = temp;
+        }
+
+        var firstElement = mergerItems[firstIndex];
+        var secondElement = mergerItems[secondIndex];
+
+        if(secondIndex - firstIndex == 1){
+            var nextElementSibling = secondElement.nextElementSibling;
+            firstElement.remove();
+            secondElement.remove();
+
+            if(nextElementSibling) {
+                container.insertBefore(firstElement,nextElementSibling);
+                container.insertBefore(secondElement,firstElement);
+            }
+            else{
+                container.appendChild(secondElement);
+                container.appendChild(firstElement);
+            }
+        }
+        else{
+            var firstElementSibling = firstElement.nextElementSibling;
+            var secondElementSibiling  = secondElement.nextElementSibling;
+            firstElement.remove();
+            secondElement.remove();
+
+            container.insertBefore(secondElement,firstElementSibling);
+            if(secondElementSibiling) {
+                container.insertBefore(firstElement,secondElementSibiling);
+            }
+            else{
+                container.appendChild(firstElement);
+            }
+        }
+    }
+</script>
 
 </html>
