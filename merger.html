@@ -61,6 +61,8 @@
         <button id="addEnd">Add End</button>
         <button id="addFront">Add Front</button>
         <button id="remove">Remove</button>
+        <button type="button" class="btn btn-primary" onclick="swapElements()">Swap</button>
+
     </div>
 
     <div class="flex-container" id="flexContainer">
@@ -103,5 +105,26 @@
             }
         };
     </script>
+    <script>
+        function swapElements() {
+    const mergerItems = document.getElementsByClassName("merger");
+    const length = mergerItems.length;
+
+    if (length < 2) {
+        return; 
+    }
+
+    const index1 = Math.floor(Math.random() * length);
+    let index2 = Math.floor(Math.random() * length);
+    
+    while (index2 === index1) {
+        index2 = Math.floor(Math.random() * length);
+    }
+    const item1 = mergerItems[index1];
+    const item2 = mergerItems[index2];
+    item1.parentNode.insertBefore(item2, item1);
+}
+    </script>
+    
 </body>
 </html>
