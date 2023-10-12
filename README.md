@@ -2,7 +2,7 @@
 # WebApps-F23-Assignment-7
 An assignment on java script modifying the DOM and using anonymous callback functions.
 
-https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-Shabna610/pirate.html
+
 Hosted at
 - [Pirate](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-Shabna610/pirate.html)
 - [React](https://44-563-webapps-f23.github.io/44563-webapps-f23-assignment7-Shabna610/react.html)
