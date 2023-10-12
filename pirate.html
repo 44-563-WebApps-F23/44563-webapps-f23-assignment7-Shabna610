@@ -123,16 +123,18 @@
         var checkCount = 0;
         var penalty = 0;
         var lastCheck = 0;
-        var treasureLocation = Math.floor(Math.random() * 25);
-        var trapLocation = Math.floor(Math.random() * 25);
+        var treasureLocation = 5;
+        var trapLocation = 18;
         var gameOver = false;
+        
+       
 
         function resetValues(){
             checkCount = 0;
             penalty = 0;
             lastCheck = 0;
-            treasureLocation = Math.floor(Math.random() * 25);
-            trapLocation = Math.floor(Math.random() * 25);
+            treasureLocation = 5;
+            trapLocation = 18;
             
             document.getElementById("locations").innerHTML =  "Number of locations checked is : " + checkCount;
             document.getElementById("penalty").innerHTML = "Penalty is : " + penalty;
